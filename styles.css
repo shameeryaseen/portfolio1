@@ -6,38 +6,73 @@ body {
   box-sizing: border-box;
 }
 
-header {
-  background: #333;
-  color: #fff;
-  padding: 1rem 0;
-  text-align: center;
+@import url(https://fonts.bunny.net/css?family=nunito:400,400i,600,600i,800,800i);
+*,*::before,*::after{box-sizing:border-box}body{margin:0;padding:0;width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;font-family:'Nunito', sans-serif;font-size:16px;line-height:1.5}
+:root{
+    --color1:#000;
+    --color2:#fff;
+    --height:40px;
+    --width:110px;
+    --border:2px;
 }
-
-nav ul {
-  list-style: none;
-  padding: 0;
+#cubicle {
+    height: var(--height);
 }
-
-nav ul li {
-  display: inline;
-  margin: 0 10px;
+#cubicle > .links {
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    list-style: none
 }
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
+#cubicle > .links li {
+    flex: 1;
+    min-width: var(--width);
+    height: var(--height);
+    margin: 0 0 0 calc(-1 * var(--border));
+    perspective: 1000px;
+    z-index: 1
 }
-
-section {
-  padding: 2rem 0;
-  text-align: center;
+#cubicle > .links li:first-child {
+    margin-left: 0;
 }
-
-section ul {
-  list-style: none;
-  padding: 0;
+#cubicle > .links li:hover {
+    z-index: 2
 }
-
-section ul li {
-  margin: 1rem 0;
+#cubicle > .links a {
+    display: block;
+    height: var(--height);
+    position: relative;
+    text-decoration: none;
+    transform-style: preserve-3d;
+    transform: translateZ(calc(-1 * calc(var(--height) / 2)));
+    transition: transform 0.5s cubic-bezier(.08,.82,.17,1)
 }
+#cubicle > .links a:hover {
+    transform: translateZ(calc(-1 * calc(var(--height) / 2))) rotateX(-90deg);
+}
+#cubicle > .links a::before,
+#cubicle > .links a::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--width);
+    height: var(--height);
+    position: absolute;
+    border: var(--border) solid var(--color1);
+    content: attr(title);
+}
+#cubicle > .links a::before {
+    background-color: var(--color2);
+    color: var(--color1);
+    transform: rotateY(0deg) translateZ(calc(var(--height) / 2))
+}
+#cubicle > .links a::after {
+    background-color: var(--color1);
+    color: var(--color2);
+    transform: rotateX(90deg) translateZ(calc(var(--height) / 2))
+}
+  
